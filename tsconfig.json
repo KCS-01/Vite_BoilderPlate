@@ -1,7 +1,57 @@
 {
-  "files": [],
-  "references": [
-    { "path": "./tsconfig.app.json" },
-    { "path": "./tsconfig.node.json" }
-  ]
+    "compilerOptions": {
+        "outDir": "./build", // dist를 build로 변경
+        "target": "ES2020", // 'es3', 'es5', 'es2015', 'es2016', 'es2017','es2018', 'esnext' 가능
+        "useDefineForClassFields": true, // 클래스 필드의 설정을 'define' 모드로
+        "lib": ["ES2020", "DOM", "DOM.Iterable"], // 사용할 라이브러리 지정
+        "module": "ESNext", //무슨 import 문법 쓸건지 'commonjs', 'amd', 'es2015', 'esnext'
+        "skipLibCheck": true, // 라이브러리 검사 여부
+
+        /* Bundler mode */
+        "moduleResolution": "bundler", // 모듈 해석 전략(import, require) bundler의 경우 파일 불러올때 확장자 X, 'nodenext', 'node10'
+        "allowImportingTsExtensions": true, // TypeScript 파일 확장자 가져오기 허용
+        "resolveJsonModule": true, // JSON 모듈 가져오기 허용
+        "isolatedModules": true, // 각 파일을 독립적으로 처리 여부
+        "removeComments": true, //컴파일시 주석제거 여부
+        "declaration": false, //컴파일시 .d.ts 파일도 자동으로 함께생성 여부 (현재쓰는 모든 타입이 정의된 파일)
+        "checkJs": false, // 일반 js 파일에서도 에러체크 여부
+        "allowJs": false, // JavaScript 파일을 허용 여부
+        "noEmit": true, // 실제로 파일을 출력하지 않음 (타입검사만하고 파일을 생성하고 싶지 않을 경우에 사용)
+        "jsx": "react-jsx", // tsx 파일을 jsx로 어떻게 컴파일할 것인지 'preserve', 'react-native', 'react'
+
+        // "outFile": "./", //모든 ts파일을 js파일 하나로 컴파일해줌 (module이 none, amd, system일 때만 가능)
+        // "outDir": "./", //js파일 아웃풋 경로바꾸기
+        // "rootDir": "./", //루트경로 바꾸기 (js 파일 아웃풋 경로에 영향줌)
+
+        /* Linting */
+        "strict": true, //strict 관련, noimplicit 관련 모드 전부 켜기
+        "noImplicitAny": false, //any타입 금지 여부
+        "strictNullChecks": true, //null, undefined 타입이 이상하면 에러내기
+        "strictFunctionTypes": true, //함수파라미터 타입체크 강하게
+        "strictPropertyInitialization": true, //class constructor 작성시 타입체크 강하게
+        "alwaysStrict": true, //자바스크립트 "use strict" 모드 켜기
+        "noImplicitThis": true, //this 키워드가 any 타입일 경우 에러내기
+        "noUnusedLocals": false, //쓰지않는 지역변수 있으면 에러내기
+        "noUnusedParameters": false, //쓰지않는 파라미터 있으면 에러내기
+        "noFallthroughCasesInSwitch": true, //switch문 이상하면 에러내기
+        "noImplicitReturns": false, //함수에서 return 빼먹으면 에러내기
+
+        /* Alias */
+        "baseUrl": ".",
+        "paths": {
+            "~assets/*": ["src/assets/*"]
+        }
+    },
+    "include": [
+        "src",
+        "global.d.ts" // 타입 정의 파일 경로 추가
+    ], // 포함할 파일 지정
+    "exclude": [
+        "node_modules",
+        "dist",
+        "src/_test",
+        "src/stories",
+        "src/pages/TestMain",
+        "**/*.stories.tsx"
+    ]
 }
